@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://fygd8wrplnto"
+path="res://.godot/imported/DavidKBD - Tropical Pack - 10 - Surf's Up, Party's On - Surf Rock.ogg-e81d3115354da0b2e5ae8e2c5ecfe976.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound/music/DavidKBD - Tropical Pack - 10 - Surf's Up, Party's On - Surf Rock.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Tropical Pack - 10 - Surf's Up, Party's On - Surf Rock.ogg-e81d3115354da0b2e5ae8e2c5ecfe976.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

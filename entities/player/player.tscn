@@ -87,6 +87,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_28xwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1luv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6jhc")
 }],
 "loop": false,
 "name": &"back",
@@ -104,16 +110,22 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5nacy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1sr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blhf2")
 }],
 "loop": false,
 "name": &"forward",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_blhf2")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_ewavp")
 }],
 "loop": true,
@@ -138,7 +150,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"left",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -152,10 +164,13 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7gccj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7muy")
 }],
 "loop": false,
 "name": &"right",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -185,95 +200,9 @@ initial_velocity_min = 70.0
 initial_velocity_max = 140.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
+scale_max = 5.0
 color = Color(0.862745, 0.0784314, 0.235294, 1)
 color_ramp = SubResource("GradientTexture1D_vgw7k")
-
-[sub_resource type="Animation" id="Animation_imesg"]
-resource_name = "eaten"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Death:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Death2:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Death3:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Death4:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Death5:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 2, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -64), Vector2(0, -42.6667)]
-}
 
 [sub_resource type="Animation" id="Animation_dsmqd"]
 length = 0.001
@@ -390,6 +319,93 @@ tracks/1/keys = {
 "values": [Vector2(-5, 0), Vector2(5, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_imesg"]
+resource_name = "eaten"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Death:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Death2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Death3:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Death4:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Death5:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -64), Vector2(0, -42.6667)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kjyyb"]
 _data = {
 "RESET": SubResource("Animation_dsmqd"),
@@ -398,15 +414,13 @@ _data = {
 }
 
 [node name="Player" type="Area2D"]
-collision_mask = 62
+collision_mask = 126
 script = ExtResource("1_mrm4o")
-start_pos = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0dy7f")
-animation = &"back"
+animation = &"splat"
 autoplay = "idle"
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
@@ -418,35 +432,35 @@ scale = Vector2(1.22145, 2.05944)
 
 [node name="Death" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 20
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_k7q7l")
 lifetime = 2.0
 one_shot = true
 
 [node name="Death2" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 20
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_k7q7l")
 lifetime = 2.0
 one_shot = true
 
 [node name="Death3" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 20
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_k7q7l")
 lifetime = 2.0
 one_shot = true
 
 [node name="Death4" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 20
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_k7q7l")
 lifetime = 2.0
 one_shot = true
 
 [node name="Death5" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 20
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_k7q7l")
 lifetime = 2.0
 one_shot = true

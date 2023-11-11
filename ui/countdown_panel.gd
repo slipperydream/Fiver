@@ -28,3 +28,7 @@ func update_clock():
 
 func _on_main_player_dead():
 	start()
+
+
+func _on_main_player_reset():
+	start()

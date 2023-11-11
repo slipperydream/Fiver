@@ -2,6 +2,7 @@ extends Area2D
 
 class_name Player
 signal died
+signal moved_forward
 
 @export var start_pos : Vector2 = Vector2(350, 880)
 @onready var sprites = $AnimatedSprite2D
@@ -20,19 +21,18 @@ func _ready():
 
 func get_input():
 	if Input.is_action_just_pressed("left"):
-		sprites.animation = "left"
+		sprites.play("left")
 		hop(Vector2.LEFT)
 	elif Input.is_action_just_pressed("right"):
-		sprites.animation = "right"
+		sprites.play("right")
 		hop(Vector2.RIGHT)
 	elif Input.is_action_just_pressed("up"):
-		sprites.animation = "forward"
+		sprites.play("forward")
 		hop(Vector2.UP)
+		emit_signal("moved_forward")
 	elif Input.is_action_just_pressed("down"):
-		sprites.animation = "back"
+		sprites.play("back")
 		hop(Vector2.DOWN)
-	else:
-		sprites.animation = "idle"
 	
 
 func _process(delta):
@@ -47,10 +47,11 @@ func _process(delta):
 	position = new_pos
 
 func hop(dir):
+	
 	var new_pos = position + dir * speed
 	tween = create_tween()
 	tween.tween_property(self, "position", new_pos, 1/speed)
-	sprites.play()
+	
 	
 func _on_visible_on_screen_enabler_2d_screen_exited():
 	die()
@@ -69,7 +70,13 @@ func _on_area_entered(area):
 		velocity = Vector2.ZERO
 		bonk()
 	elif area is Water:
-		drown()
+		pass
+		#drown()
+	elif area is Goal:
+		if area.goal_occupied:
+			position.y += speed/2
+		else:
+			enabled = false
 
 func splat():
 	sprites.play("splat")
@@ -97,14 +104,19 @@ func die():
 	dead = true
 
 func reset():
+	enabled = true
 	dead = false
 	sprites.visible = true
 	sprites.position = Vector2.ZERO
 	sprites.scale = Vector2(1,1)
+	sprites.flip_v = false
 	position = start_pos
 	velocity = Vector2.ZERO
 	sprites.play("idle")
 
-
 func _on_area_exited(area):
 	velocity = Vector2.ZERO
+
+func _on_main_game_over():
+	dead = true
+

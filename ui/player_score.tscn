@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://srk6wtfcee6x"]
+
+[ext_resource type="Script" path="res://ui/player_score.gd" id="1_4ryhr"]
+[ext_resource type="FontFile" uid="uid://cmm8ooyfssf73" path="res://ui/fonts/PixelMechaBold.ttf" id="2_0fmgk"]
+[ext_resource type="FontFile" uid="uid://bdgp1u7o5gj8r" path="res://ui/fonts/PixelMecha.ttf" id="3_tc4nq"]
+
+[node name="PlayerScore" type="VBoxContainer"]
+script = ExtResource("1_4ryhr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0fmgk")
+theme_override_font_sizes/font_size = 24
+text = "Score"
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.545098, 0.133333, 1)
+theme_override_fonts/font = ExtResource("3_tc4nq")
+theme_override_font_sizes/font_size = 30
+text = "0000000000"

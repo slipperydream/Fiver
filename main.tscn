@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ob2qxkvs47ss"]
+[gd_scene load_steps=13 format=3 uid="uid://ob2qxkvs47ss"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m6wsp"]
 [ext_resource type="PackedScene" uid="uid://das7aeo3q4mp" path="res://world/city.tscn" id="1_w00rs"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://b6tmk5wuj4bnf" path="res://entities/rock.tscn" id="6_u1jsx"]
 [ext_resource type="PackedScene" uid="uid://cvxfhr2jnox06" path="res://entities/player/player.tscn" id="8_n5c6a"]
 [ext_resource type="PackedScene" uid="uid://bqovgipben058" path="res://ui/countdown_panel.tscn" id="9_lx10y"]
+[ext_resource type="PackedScene" uid="uid://7sy7gc06sx86" path="res://ui/life_counter.tscn" id="9_ngpul"]
+[ext_resource type="PackedScene" uid="uid://cvvmq0aqv4vfs" path="res://ui/end_game_banner.tscn" id="10_cihyy"]
+[ext_resource type="PackedScene" uid="uid://dqint508tgfm" path="res://ui/time.tscn" id="11_jri47"]
+[ext_resource type="PackedScene" uid="uid://srk6wtfcee6x" path="res://ui/player_score.tscn" id="12_kjok5"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_m6wsp")
@@ -15,6 +19,8 @@ script = ExtResource("1_m6wsp")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TileMap" parent="CanvasLayer" instance=ExtResource("1_w00rs")]
+
+[node name="Player" parent="CanvasLayer" instance=ExtResource("8_n5c6a")]
 
 [node name="LaneSpawner0" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
 position = Vector2(-50, 816)
@@ -76,12 +82,40 @@ lane_number = 10
 lane_speed = 50
 spawns = Array[PackedScene]([ExtResource("5_r3k65"), ExtResource("6_u1jsx")])
 
-[node name="Player" parent="CanvasLayer" instance=ExtResource("8_n5c6a")]
-start_pos = null
-
 [node name="CountdownPanel" parent="CanvasLayer" instance=ExtResource("9_lx10y")]
 
+[node name="LifeCounter" parent="CanvasLayer" instance=ExtResource("9_ngpul")]
+offset_top = -85.0
+offset_bottom = -50.0
+
+[node name="EndGameBanner" parent="CanvasLayer" instance=ExtResource("10_cihyy")]
+
+[node name="Time" parent="CanvasLayer" instance=ExtResource("11_jri47")]
+offset_left = -560.0
+offset_right = -19.0
+
+[node name="PlayerScore" parent="CanvasLayer" instance=ExtResource("12_kjok5")]
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 146.0
+offset_bottom = 69.0
+
 [connection signal="game_over" from="." to="." method="_on_game_over"]
+[connection signal="game_over" from="." to="CanvasLayer/Player" method="_on_main_game_over"]
+[connection signal="game_over" from="." to="CanvasLayer/LifeCounter" method="_on_main_game_over"]
+[connection signal="game_over" from="." to="CanvasLayer/EndGameBanner" method="_on_main_game_over"]
+[connection signal="life_earned" from="." to="." method="_on_life_earned"]
+[connection signal="life_earned" from="." to="CanvasLayer/LifeCounter" method="_on_main_life_earned"]
 [connection signal="player_dead" from="." to="CanvasLayer/CountdownPanel" method="_on_main_player_dead"]
+[connection signal="player_dead" from="." to="CanvasLayer/LifeCounter" method="_on_main_player_dead"]
+[connection signal="player_reset" from="." to="CanvasLayer/CountdownPanel" method="_on_main_player_reset"]
+[connection signal="start_game" from="." to="." method="_on_start_game"]
+[connection signal="start_game" from="." to="CanvasLayer/LifeCounter" method="_on_main_start_game"]
+[connection signal="start_game" from="." to="CanvasLayer/Time" method="_on_main_start_game"]
+[connection signal="won_game" from="." to="CanvasLayer/EndGameBanner" method="_on_main_won_game"]
+[connection signal="all_goals_filled" from="CanvasLayer/TileMap" to="." method="_on_tile_map_all_goals_filled"]
+[connection signal="goal_filled" from="CanvasLayer/TileMap" to="." method="_on_tile_map_goal_filled"]
 [connection signal="died" from="CanvasLayer/Player" to="." method="_on_player_died"]
+[connection signal="moved_forward" from="CanvasLayer/Player" to="." method="_on_player_moved_forward"]
 [connection signal="countdown_over" from="CanvasLayer/CountdownPanel" to="." method="_on_countdown_panel_countdown_over"]
+[connection signal="time_expired" from="CanvasLayer/Time" to="." method="_on_time_time_expired"]
