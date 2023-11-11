@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://ob2qxkvs47ss"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_m6wsp"]
+[ext_resource type="PackedScene" uid="uid://das7aeo3q4mp" path="res://world/city.tscn" id="1_w00rs"]
+[ext_resource type="PackedScene" uid="uid://7q66guue18xl" path="res://lane_spawner.tscn" id="2_0lwfv"]
+[ext_resource type="PackedScene" uid="uid://c8yb136l4m0um" path="res://entities/car.tscn" id="3_sbmme"]
+[ext_resource type="PackedScene" uid="uid://bd5105xaysxd4" path="res://entities/crocodile.tscn" id="5_r3k65"]
+[ext_resource type="PackedScene" uid="uid://b6tmk5wuj4bnf" path="res://entities/rock.tscn" id="6_u1jsx"]
+[ext_resource type="PackedScene" uid="uid://cvxfhr2jnox06" path="res://entities/player/player.tscn" id="8_n5c6a"]
+[ext_resource type="PackedScene" uid="uid://bqovgipben058" path="res://ui/countdown_panel.tscn" id="9_lx10y"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_m6wsp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TileMap" parent="CanvasLayer" instance=ExtResource("1_w00rs")]
+
+[node name="LaneSpawner0" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(-50, 816)
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("3_sbmme")])
+
+[node name="LaneSpawner1" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(830, 752)
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("3_sbmme")])
+
+[node name="LaneSpawner2" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(-50, 688)
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("3_sbmme")])
+
+[node name="LaneSpawner3" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(830, 624)
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("3_sbmme")])
+
+[node name="LaneSpawner4" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(-50, 560)
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("3_sbmme")])
+
+[node name="LaneSpawner5" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(830, 496)
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("3_sbmme")])
+
+[node name="LaneSpawner6" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(830, 432)
+lane_number = 6
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("5_r3k65"), ExtResource("6_u1jsx")])
+
+[node name="LaneSpawner7" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(-5, 368)
+lane_number = 7
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("5_r3k65"), ExtResource("6_u1jsx")])
+
+[node name="LaneSpawner8" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(830, 302)
+lane_number = 8
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("5_r3k65"), ExtResource("6_u1jsx")])
+
+[node name="LaneSpawner9" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(-5, 240)
+lane_number = 9
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("5_r3k65"), ExtResource("6_u1jsx")])
+
+[node name="LaneSpawner10" parent="CanvasLayer" instance=ExtResource("2_0lwfv")]
+position = Vector2(830, 176)
+lane_number = 10
+lane_speed = 50
+spawns = Array[PackedScene]([ExtResource("5_r3k65"), ExtResource("6_u1jsx")])
+
+[node name="Player" parent="CanvasLayer" instance=ExtResource("8_n5c6a")]
+start_pos = null
+
+[node name="CountdownPanel" parent="CanvasLayer" instance=ExtResource("9_lx10y")]
+
+[connection signal="game_over" from="." to="." method="_on_game_over"]
+[connection signal="player_dead" from="." to="CanvasLayer/CountdownPanel" method="_on_main_player_dead"]
+[connection signal="died" from="CanvasLayer/Player" to="." method="_on_player_died"]
+[connection signal="countdown_over" from="CanvasLayer/CountdownPanel" to="." method="_on_countdown_panel_countdown_over"]

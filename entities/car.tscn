@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8yb136l4m0um"]
+
+[ext_resource type="Script" path="res://entities/vehicle.gd" id="1_gf2bj"]
+[ext_resource type="Texture2D" uid="uid://b3ui2fqqpn7xm" path="res://entities/cars.png" id="2_o3v6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfanj"]
+size = Vector2(107, 64)
+
+[node name="Car" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_gf2bj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o3v6o")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_rfanj")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0.499994, -1)
+scale = Vector2(5.45, 3.1)
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

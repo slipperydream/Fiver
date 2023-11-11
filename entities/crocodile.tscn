@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://bd5105xaysxd4"]
+
+[ext_resource type="Script" path="res://entities/crocodile.gd" id="1_w1bmf"]
+[ext_resource type="Texture2D" uid="uid://k8mli0xamg8j" path="res://entities/croc_attack - Copy.png" id="2_1c3s7"]
+[ext_resource type="Texture2D" uid="uid://bmtohsibmxhev" path="res://entities/croc_idle.png" id="2_vkd2c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u3ej"]
+atlas = ExtResource("2_1c3s7")
+region = Rect2(1512, 0, 189, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq6gp"]
+atlas = ExtResource("2_1c3s7")
+region = Rect2(1323, 0, 189, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6a7x"]
+atlas = ExtResource("2_1c3s7")
+region = Rect2(1701, 0, 189, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu8na"]
+atlas = ExtResource("2_1c3s7")
+region = Rect2(1323, 0, 189, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a561e"]
+atlas = ExtResource("2_1c3s7")
+region = Rect2(1512, 0, 189, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dneqr"]
+atlas = ExtResource("2_vkd2c")
+region = Rect2(0, 0, 189, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e16oy"]
+atlas = ExtResource("2_vkd2c")
+region = Rect2(189, 0, 189, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xeebn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u3ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq6gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6a7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu8na")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a561e")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dneqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e16oy")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfanj"]
+size = Vector2(120, 48)
+
+[node name="Crocodile" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_w1bmf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xeebn")
+animation = &"attack"
+autoplay = "idle"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rfanj")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(6.05, 2.3)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

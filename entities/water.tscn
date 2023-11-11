@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3m8ow6bfn8jc"]
+
+[ext_resource type="Script" path="res://entities/water.gd" id="1_bwjqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjd4u"]
+size = Vector2(875, 311.906)
+
+[node name="Water" type="Area2D"]
+position = Vector2(56, 113)
+collision_layer = 2
+script = ExtResource("1_bwjqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qjd4u")
+debug_color = Color(0.952941, 0.121569, 0.447059, 0.419608)
