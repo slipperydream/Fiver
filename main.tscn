@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ob2qxkvs47ss"]
+[gd_scene load_steps=16 format=3 uid="uid://ob2qxkvs47ss"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m6wsp"]
 [ext_resource type="PackedScene" uid="uid://das7aeo3q4mp" path="res://world/city.tscn" id="1_w00rs"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://srk6wtfcee6x" path="res://ui/player_score.tscn" id="12_kjok5"]
 [ext_resource type="PackedScene" uid="uid://8rhb62yidt23" path="res://ui/high_score.tscn" id="13_i4n28"]
 [ext_resource type="PackedScene" uid="uid://bcai38xe752jx" path="res://ui/logo.tscn" id="14_1nocf"]
+[ext_resource type="PackedScene" uid="uid://bnbp3nvqaqf2w" path="res://ui/title_screen.tscn" id="15_3hhiq"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_m6wsp")
@@ -110,10 +111,14 @@ offset_bottom = 84.0
 
 [node name="HighScore" parent="CanvasLayer" instance=ExtResource("13_i4n28")]
 
+[node name="TitleScreen" parent="CanvasLayer" instance=ExtResource("15_3hhiq")]
+
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/Player" method="_on_main_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/LifeCounter" method="_on_main_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/EndGameBanner" method="_on_main_game_over"]
+[connection signal="level_clear" from="." to="." method="_on_level_clear"]
+[connection signal="level_clear" from="." to="CanvasLayer/TileMap" method="_on_main_level_clear"]
 [connection signal="life_earned" from="." to="." method="_on_life_earned"]
 [connection signal="life_earned" from="." to="CanvasLayer/LifeCounter" method="_on_main_life_earned"]
 [connection signal="player_dead" from="." to="CanvasLayer/CountdownPanel" method="_on_main_player_dead"]
@@ -123,10 +128,15 @@ offset_bottom = 84.0
 [connection signal="start_game" from="." to="." method="_on_start_game"]
 [connection signal="start_game" from="." to="CanvasLayer/LifeCounter" method="_on_main_start_game"]
 [connection signal="start_game" from="." to="CanvasLayer/Time" method="_on_main_start_game"]
+[connection signal="start_game" from="." to="CanvasLayer/TitleScreen" method="_on_main_start_game"]
 [connection signal="won_game" from="." to="CanvasLayer/EndGameBanner" method="_on_main_won_game"]
 [connection signal="all_goals_filled" from="CanvasLayer/TileMap" to="." method="_on_tile_map_all_goals_filled"]
+[connection signal="all_goals_filled" from="CanvasLayer/TileMap" to="CanvasLayer/Time" method="_on_tile_map_all_goals_filled"]
 [connection signal="goal_filled" from="CanvasLayer/TileMap" to="." method="_on_tile_map_goal_filled"]
+[connection signal="goal_filled" from="CanvasLayer/TileMap" to="CanvasLayer/Time" method="_on_tile_map_goal_filled"]
 [connection signal="died" from="CanvasLayer/Player" to="." method="_on_player_died"]
 [connection signal="moved_forward" from="CanvasLayer/Player" to="." method="_on_player_moved_forward"]
 [connection signal="countdown_over" from="CanvasLayer/CountdownPanel" to="." method="_on_countdown_panel_countdown_over"]
 [connection signal="time_expired" from="CanvasLayer/Time" to="." method="_on_time_time_expired"]
+[connection signal="time_left" from="CanvasLayer/Time" to="." method="_on_time_time_left"]
+[connection signal="new_game" from="CanvasLayer/TitleScreen" to="." method="_on_title_screen_new_game"]

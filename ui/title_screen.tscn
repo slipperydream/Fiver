@@ -1,0 +1,141 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnbp3nvqaqf2w"]
+
+[ext_resource type="Script" path="res://ui/title_screen.gd" id="1_a7b4r"]
+[ext_resource type="PackedScene" uid="uid://bcai38xe752jx" path="res://ui/logo.tscn" id="1_ernnk"]
+[ext_resource type="FontFile" uid="uid://bdgp1u7o5gj8r" path="res://ui/fonts/PixelMecha.ttf" id="2_3l5do"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5x8s3"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.133333, 0.545098, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqxhy"]
+bg_color = Color(0.133333, 0.545098, 0.133333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42fnt"]
+bg_color = Color(0, 1, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uy35"]
+bg_color = Color(0, 0.501961, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="TitleScreen" type="Control"]
+custom_minimum_size = Vector2(740, 400)
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -291.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a7b4r")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5x8s3")
+
+[node name="Logo" parent="Panel" instance=ExtResource("1_ernnk")]
+custom_minimum_size = Vector2(740, 275)
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.0
+anchor_right = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 3.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.647059, 0, 1)
+theme_override_fonts/font = ExtResource("2_3l5do")
+theme_override_font_sizes/font_size = 30
+text = "Hop Along To Freedom"
+horizontal_alignment = 1
+
+[node name="PlayGameButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -129.0
+offset_right = 55.5
+offset_bottom = -107.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_3l5do")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqxhy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_42fnt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6uy35")
+text = "Play Game"
+
+[node name="ExitGameButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -74.0
+offset_right = 55.5
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_3l5do")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqxhy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_42fnt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6uy35")
+text = "Exit Game"
+
+[connection signal="pressed" from="Panel/PlayGameButton" to="." method="_on_play_game_button_pressed"]
+[connection signal="pressed" from="Panel/ExitGameButton" to="." method="_on_exit_game_button_pressed"]

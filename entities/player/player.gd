@@ -11,6 +11,8 @@ var velocity : Vector2 = Vector2.ZERO
 var dead : bool = false
 var enabled : bool = false
 var tween
+var active_collisions : int = 0
+var on_water : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +49,6 @@ func _process(delta):
 	position = new_pos
 
 func hop(dir):
-	
 	var new_pos = position + dir * speed
 	tween = create_tween()
 	tween.tween_property(self, "position", new_pos, 1/speed)
@@ -64,14 +65,12 @@ func _on_area_entered(area):
 	elif area is Crocodile:
 		eaten()
 	elif area is Floater:
+		active_collisions += 1
 		velocity = area.direction * area.speed
 	elif area is Barrier:
 		print("barrier")
 		velocity = Vector2.ZERO
 		bonk()
-	elif area is Water:
-		pass
-		#drown()
 	elif area is Goal:
 		if area.goal_occupied:
 			position.y += speed/2
@@ -80,16 +79,17 @@ func _on_area_entered(area):
 			enabled = false
 
 func splat():
+	die()
 	sprites.play("splat")
 	set_emitters(true)
-	die()
 
 func eaten():
-	$AnimationPlayer.play("eaten")
 	die()
+	$AnimationPlayer.play("eaten")
 
 func drown():
 	die()
+	print('drowned')
 	
 func bonk():
 	$AnimationPlayer.play("bonk")
@@ -101,23 +101,46 @@ func set_emitters(value):
 			child.emitting = value
 
 func die():
-	emit_signal("died")
+	if dead:
+		return
 	dead = true
+	emit_signal("died")
+	
 
 func reset():
+	position = start_pos
 	enabled = true
-	dead = false
 	sprites.visible = true
 	sprites.position = Vector2.ZERO
 	sprites.scale = Vector2(1,1)
+	active_collisions = 0
 	sprites.flip_v = false
-	position = start_pos
 	velocity = Vector2.ZERO
 	sprites.play("idle")
+	dead = false
 
 func _on_area_exited(area):
+	if area is Floater:
+		active_collisions -= 1
 	velocity = Vector2.ZERO
 
 func _on_main_game_over():
 	dead = true
 
+func _on_body_entered(body):
+	if dead: 
+		return
+	if body is TileMap:
+		on_water = true
+		$DrownTimer.start()
+
+func _on_drown_timer_timeout():
+	if on_water and active_collisions == 0:
+		if dead:
+			return
+		else:
+			drown()
+
+func _on_body_exited(body):
+	if body is TileMap:
+		on_water = false

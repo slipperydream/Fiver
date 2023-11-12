@@ -3,11 +3,11 @@ extends AudioStreamPlayer2D
 @export var song_dir : String = "res://sound/music/"
 @export var max_volume : int = -15
 
-var current_song : AudioStreamOggVorbis
-var playlist : Array[AudioStreamOggVorbis] = []
+var current_song : AudioStreamWAV
+var playlist : Array[AudioStreamWAV] = []
 var default_fade_time : float = 1.25
 var loops : int = 0
-var max_loops : int = 3
+var max_loops : int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +22,7 @@ func get_songs(path):
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if file_name.get_extension() == 'ogg':
+			if file_name.get_extension() == 'wav':
 				var song_title = path+file_name
 				var song = load(song_title)
 				playlist.append(song)

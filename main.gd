@@ -7,6 +7,7 @@ signal life_earned
 signal start_game
 signal player_reset
 signal score_changed
+signal level_clear
 
 @onready var lane_0 = $CanvasLayer/LaneSpawner0
 @onready var lane_1 = $CanvasLayer/LaneSpawner1
@@ -25,6 +26,7 @@ var max_lives : int = 10
 var start_lives : int = 3
 var lives : int = 0
 @onready var player = $CanvasLayer/Player
+@onready var title_screen = $CanvasLayer/TitleScreen
 @onready var current_level : int = 0
 
 var score : int = 0
@@ -39,26 +41,39 @@ var new_life_min
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fill_lanes()
-	emit_signal("start_game")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+func clear_lanes():
+	lane_0.clear_lane()
+	lane_1.clear_lane()
+	lane_2.clear_lane()
+	lane_3.clear_lane()
+	lane_4.clear_lane()
+	if current_level >= max_level/2:
+		lane_5.clear_lane()
+	lane_6.clear_lane()
+	lane_7.clear_lane()
+	lane_8.clear_lane()
+	lane_9.clear_lane()
+	lane_10.clear_lane()
+	
 func fill_lanes():
 	randomize()
-	lane_0.start()
-	lane_1.start()
-	lane_2.start()
-	lane_3.start()
-	lane_4.start()
+	lane_0.start(current_level)
+	lane_1.start(current_level)
+	lane_2.start(current_level)
+	lane_3.start(current_level)
+	lane_4.start(current_level)
 	if current_level >= max_level/2:
-		lane_5.start()
-	lane_6.start()
-	lane_7.start()
-	lane_8.start()
-	lane_9.start()
-	lane_10.start()
+		lane_5.start(current_level)
+	lane_6.start(current_level)
+	lane_7.start(current_level)
+	lane_8.start(current_level)
+	lane_9.start(current_level)
+	lane_10.start(current_level)
 
 func _on_player_died():
 	lives -= 1
@@ -72,7 +87,10 @@ func _on_countdown_panel_countdown_over():
 
 func _on_game_over():
 	player.enabled = true
+	await get_tree().create_timer(1).timeout
 	HighScoreSystem.check_for_high_score(score)
+	await get_tree().create_timer(2).timeout
+	title_screen.visible = true
 
 func _on_time_time_expired():
 	emit_signal("game_over")
@@ -93,15 +111,26 @@ func _on_life_earned():
 
 func _on_start_game():
 	lives = start_lives
-	player.reset()
+	emit_signal("player_reset")
 	score = 0
 	new_life_min = bonus_interval
 
 func _on_tile_map_all_goals_filled():
 	update_score(all_goals_reached_score)
-	emit_signal("player_reset")
+	clear_lanes()
+	emit_signal("level_clear")
 
 func _on_tile_map_goal_filled():
 	update_score(goal_reached_score)
 	emit_signal("player_reset")
 
+func _on_title_screen_new_game():
+	emit_signal("start_game")
+
+func _on_time_time_left(value):
+	update_score(value * score_per_second_remaining)
+
+func _on_level_clear():
+	fill_lanes()
+	emit_signal("player_reset")
+	

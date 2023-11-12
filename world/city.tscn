@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://das7aeo3q4mp"]
+[gd_scene load_steps=5 format=3 uid="uid://das7aeo3q4mp"]
 
 [ext_resource type="TileSet" uid="uid://cdq6unqxk56ly" path="res://world/city.tres" id="1_uu0ta"]
 [ext_resource type="PackedScene" uid="uid://ffhdx1st74pf" path="res://entities/barrier.tscn" id="2_c0xh4"]
 [ext_resource type="Script" path="res://world/city.gd" id="2_u61ov"]
 [ext_resource type="PackedScene" uid="uid://bdxvvsh6mrbql" path="res://entities/goal.tscn" id="3_68qxm"]
-[ext_resource type="PackedScene" uid="uid://b3m8ow6bfn8jc" path="res://entities/water.tscn" id="4_h3v0v"]
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_uu0ta")
@@ -62,9 +61,6 @@ position = Vector2(719, 119)
 
 [node name="Barrier9" parent="." instance=ExtResource("2_c0xh4")]
 position = Vector2(748, 119)
-
-[node name="Water" parent="." instance=ExtResource("4_h3v0v")]
-position = Vector2(381, 304)
 
 [connection signal="goal_reached" from="Goal" to="." method="_on_goal_goal_reached"]
 [connection signal="goal_reached" from="Goal2" to="." method="_on_goal_2_goal_reached"]

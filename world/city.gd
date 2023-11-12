@@ -32,3 +32,8 @@ func _on_goal_4_goal_reached():
 	goals_filled += 1
 	if goals_filled >= total_goals:
 		all_goals_filled.emit()
+
+func _on_main_level_clear():
+	for child in get_children():
+		if child is Goal:
+			child.reset()

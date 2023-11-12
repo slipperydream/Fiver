@@ -3,7 +3,8 @@ This is game 3 in the 20 games challenge. Doing a reskin of Frogger.
 
 ## Credits
 ### Music
-["Tropical Dreams, Spring and Summer Music Pack"cal Dreams, Spring and Summer Music Pack"](https://davidkbd.itch.io/tropical-dreams-spring-and-summer-music-pac://davidkbd.itch.io/tropical-dreams-spring-and-summer-music-pack) by [DavidKBD](https://davidkbd.itch.io/)
+Forest Hopper by Crossedkiller is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
+Level 1, Level 2, and Level 3 by Juhani Junkala and is licensed under CC0 creative commons license.
 
 ### Art
 Rabbit 

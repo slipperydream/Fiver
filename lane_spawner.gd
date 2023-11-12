@@ -13,9 +13,9 @@ var random_speed : int
 func _ready():
 	randomize()
 
-func start():
+func start(current_level):
 	spawn_lane()
-	random_speed = randi_range(lane_speed-10, lane_speed+10)
+	random_speed = randi_range(lane_speed-10, lane_speed+10) + current_level * 2
 
 func spawn_lane():
 	var spawn = spawns[randi() % spawns.size()]
@@ -39,3 +39,7 @@ func _on_spawn_timer_timeout():
 	$SpawnTimer.wait_time = randi_range(spawn_time_min, spawn_time_max)
 	$SpawnTimer.start()
 	spawn_lane()
+
+func clear_lane():
+	for child in get_children():
+		call_deferred("queue_free", child)

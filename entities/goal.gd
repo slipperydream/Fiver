@@ -13,3 +13,6 @@ func _on_area_entered(area):
 func _on_goal_reached():
 	$Sprite2D.visible = true
 	
+func reset():
+	$Sprite2D.visible = false
+	goal_occupied = false

@@ -4,11 +4,13 @@ signal countdown_over
 
 @onready var clock = $clock
 @export var countdown_time : int = 3
+var countdown_interval : int 
 
 func _ready():
 	visible = false
 
 func start():
+	countdown_interval = countdown_time
 	visible = true
 	update_clock()
 	$Timer.start()
@@ -20,7 +22,7 @@ func _on_timer_timeout():
 		$Timer.start()
 	else:
 		emit_signal("countdown_over")
-		countdown_time = 5
+		countdown_time = countdown_interval
 		visible = false
 
 func update_clock():
