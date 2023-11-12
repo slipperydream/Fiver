@@ -26,12 +26,15 @@ collision_layer = 64
 
 [node name="Goal2" parent="." instance=ExtResource("3_68qxm")]
 position = Vector2(279, 109)
+collision_layer = 64
 
 [node name="Goal3" parent="." instance=ExtResource("3_68qxm")]
 position = Vector2(470, 106)
+collision_layer = 64
 
 [node name="Goal4" parent="." instance=ExtResource("3_68qxm")]
 position = Vector2(647, 109)
+collision_layer = 64
 
 [node name="Barrier" parent="." instance=ExtResource("2_c0xh4")]
 position = Vector2(37, 125)

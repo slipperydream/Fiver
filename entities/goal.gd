@@ -8,8 +8,8 @@ var goal_occupied : bool = false
 
 func _on_area_entered(area):
 	if goal_occupied == false:
-		goal_occupied = true
 		emit_signal("goal_reached")
 
 func _on_goal_reached():
 	$Sprite2D.visible = true
+	

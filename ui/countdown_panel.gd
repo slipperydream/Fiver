@@ -3,7 +3,7 @@ extends Panel
 signal countdown_over
 
 @onready var clock = $clock
-var countdown_time : int = 5
+@export var countdown_time : int = 3
 
 func _ready():
 	visible = false

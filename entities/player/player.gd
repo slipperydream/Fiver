@@ -76,6 +76,7 @@ func _on_area_entered(area):
 		if area.goal_occupied:
 			position.y += speed/2
 		else:
+			area.goal_occupied = true
 			enabled = false
 
 func splat():

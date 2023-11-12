@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ob2qxkvs47ss"]
+[gd_scene load_steps=15 format=3 uid="uid://ob2qxkvs47ss"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m6wsp"]
 [ext_resource type="PackedScene" uid="uid://das7aeo3q4mp" path="res://world/city.tscn" id="1_w00rs"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cvvmq0aqv4vfs" path="res://ui/end_game_banner.tscn" id="10_cihyy"]
 [ext_resource type="PackedScene" uid="uid://dqint508tgfm" path="res://ui/time.tscn" id="11_jri47"]
 [ext_resource type="PackedScene" uid="uid://srk6wtfcee6x" path="res://ui/player_score.tscn" id="12_kjok5"]
+[ext_resource type="PackedScene" uid="uid://8rhb62yidt23" path="res://ui/high_score.tscn" id="13_i4n28"]
+[ext_resource type="PackedScene" uid="uid://bcai38xe752jx" path="res://ui/logo.tscn" id="14_1nocf"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_m6wsp")
@@ -100,6 +102,14 @@ offset_top = 9.0
 offset_right = 146.0
 offset_bottom = 69.0
 
+[node name="Logo" parent="CanvasLayer" instance=ExtResource("14_1nocf")]
+offset_left = -214.0
+offset_top = 6.0
+offset_right = 218.0
+offset_bottom = 84.0
+
+[node name="HighScore" parent="CanvasLayer" instance=ExtResource("13_i4n28")]
+
 [connection signal="game_over" from="." to="." method="_on_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/Player" method="_on_main_game_over"]
 [connection signal="game_over" from="." to="CanvasLayer/LifeCounter" method="_on_main_game_over"]
@@ -109,6 +119,7 @@ offset_bottom = 69.0
 [connection signal="player_dead" from="." to="CanvasLayer/CountdownPanel" method="_on_main_player_dead"]
 [connection signal="player_dead" from="." to="CanvasLayer/LifeCounter" method="_on_main_player_dead"]
 [connection signal="player_reset" from="." to="CanvasLayer/CountdownPanel" method="_on_main_player_reset"]
+[connection signal="score_changed" from="." to="CanvasLayer/PlayerScore" method="_on_main_score_changed"]
 [connection signal="start_game" from="." to="." method="_on_start_game"]
 [connection signal="start_game" from="." to="CanvasLayer/LifeCounter" method="_on_main_start_game"]
 [connection signal="start_game" from="." to="CanvasLayer/Time" method="_on_main_start_game"]

@@ -6,6 +6,7 @@ signal won_game
 signal life_earned
 signal start_game
 signal player_reset
+signal score_changed
 
 @onready var lane_0 = $CanvasLayer/LaneSpawner0
 @onready var lane_1 = $CanvasLayer/LaneSpawner1
@@ -45,6 +46,7 @@ func _process(delta):
 	pass
 
 func fill_lanes():
+	randomize()
 	lane_0.start()
 	lane_1.start()
 	lane_2.start()
@@ -70,12 +72,14 @@ func _on_countdown_panel_countdown_over():
 
 func _on_game_over():
 	player.enabled = true
+	HighScoreSystem.check_for_high_score(score)
 
 func _on_time_time_expired():
 	emit_signal("game_over")
 
 func update_score(value):
 	score += value
+	emit_signal("score_changed", score)
 	if score >= new_life_min:
 		new_life_min += bonus_interval
 		emit_signal("life_earned")

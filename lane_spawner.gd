@@ -6,7 +6,8 @@ class_name LaneSpawner
 @export var lane_speed : int
 @export var spawn_time_min : int = 3
 @export var spawn_time_max : int = 6
-@export var spawns : Array[PackedScene] = []
+@export var spawns : Array[PackedScene] 
+var random_speed : int 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,6 +15,7 @@ func _ready():
 
 func start():
 	spawn_lane()
+	random_speed = randi_range(lane_speed-10, lane_speed+10)
 
 func spawn_lane():
 	var spawn = spawns[randi() % spawns.size()]
@@ -21,7 +23,7 @@ func spawn_lane():
 	
 	var pos = global_position
 	var dir = get_lane_dir()
-	var speed = lane_speed
+	var speed = random_speed
 	add_child(new_spawn)
 	new_spawn.start(pos, dir, speed)
 	$SpawnTimer.wait_time = randi_range(spawn_time_min, spawn_time_max)
