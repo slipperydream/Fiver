@@ -5,9 +5,7 @@ extends AudioStreamPlayer2D
 
 var current_song : AudioStreamWAV
 var playlist : Array[AudioStreamWAV] = []
-var default_fade_time : float = 1.25
-var loops : int = 0
-var max_loops : int = 2
+var default_fade_time : float = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,11 +28,8 @@ func get_songs(path):
 		dir.list_dir_end()
 		
 func _on_finished():
-	if loops >= max_loops:
-		var song = get_random_song()
-		play_song(song, default_fade_time)
-	else:
-		play_song(current_song, default_fade_time)
+	var song = get_random_song()
+	play_song(song, default_fade_time)
 
 func fade_in(fade_time=default_fade_time):
 	if get_child_count() > 0:
@@ -55,7 +50,6 @@ func get_random_song():
 func play_song(song, fade_time):
 	# TODO: Revisit this so the fading is smoother
 	current_song = song
-	loops += 1
 	fade_out(fade_time)
 	await get_tree().create_timer(fade_time).timeout
 	for child in get_children():

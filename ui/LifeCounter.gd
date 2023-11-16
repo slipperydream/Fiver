@@ -58,7 +58,7 @@ func _on_main_life_earned():
 		$LifeIcon10.visible = true
 
 func _on_main_start_game():
-	set_icon_visiblity(false)
-	$LifeIcon1.visible = true
-	$LifeIcon2.visible = true
-	$LifeIcon3.visible = true
+	set_icon_visiblity(true)
+#	$LifeIcon1.visible = true
+#	$LifeIcon2.visible = true
+#	$LifeIcon3.visible = true

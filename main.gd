@@ -23,7 +23,7 @@ signal level_clear
 
 @export var max_level : int = 10
 var max_lives : int = 10
-var start_lives : int = 3
+var start_lives : int = 10
 var lives : int = 0
 @onready var player = $CanvasLayer/Player
 @onready var title_screen = $CanvasLayer/TitleScreen
@@ -134,3 +134,11 @@ func _on_level_clear():
 	fill_lanes()
 	emit_signal("player_reset")
 	
+
+
+func _on_credits_credits_closed():
+	pass # Replace with function body.
+
+
+func _on_title_screen_display_credits():
+	$CanvasLayer/Credits.show()

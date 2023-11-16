@@ -50,6 +50,7 @@ func _process(delta):
 
 func hop(dir):
 	var new_pos = position + dir * speed
+	new_pos.y = clamp(new_pos.y, 60,880)
 	tween = create_tween()
 	tween.tween_property(self, "position", new_pos, 1/speed)
 	

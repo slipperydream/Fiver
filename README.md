@@ -11,7 +11,7 @@ Rabbit
 [PixelFarm](https://bitbucket.org/tebruno99/pixelfarm) Stephen "Redshrike" Challener
 
 Crocodile 
-[knik1985](https://opengameart.org/users/knik198://opengameart.org/users/knik1985)
+[knik1985](https://opengameart.org/users/knik1985)
 
 Roguelike Modern City (2.0)
 Created/distributed by [Kenney](www.kenney.nl)

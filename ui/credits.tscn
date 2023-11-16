@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://b10xgvyr5d0hj"]
+
+[ext_resource type="FontFile" uid="uid://cmm8ooyfssf73" path="res://ui/fonts/PixelMechaBold.ttf" id="1_8wkox"]
+[ext_resource type="Script" path="res://ui/credits.gd" id="1_telja"]
+[ext_resource type="FontFile" uid="uid://bdgp1u7o5gj8r" path="res://ui/fonts/PixelMecha.ttf" id="2_t1g3p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cffm"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqxhy"]
+bg_color = Color(0.133333, 0.545098, 0.133333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42fnt"]
+bg_color = Color(0, 1, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uy35"]
+bg_color = Color(0, 0.501961, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="Credits" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0cffm")
+script = ExtResource("1_telja")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_8wkox")
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 26.0
+offset_top = -431.0
+offset_right = -32.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Inspired by the classic game Frogger.
+
+[b]Music[/b]
+
+\"Forest Hopper\" by Crossedkiller is licensed under a Creative Commons Attribution-No Derivatives 4.0 International License.
+
+\"Level 1\", \"Level 2\", and \"Level 3\" by Juhani Junkala and is licensed under CC0 creative commons license.
+
+[b]Art[/b]
+\"Rabbit\" by
+PixelFarm (https://bitbucket.org/tebruno99/pixelfarm) 
+
+\"Crocodile\" by
+ knik1985 (https://opengameart.org/users/knik1985)
+
+\"Roguelike Modern City (2.0)\", 
+\"RPG Urban Pack 1.0\",
+\"Racing Pack\" 
+Created/distributed by Kenney (www.kenney.nl) under a Creative Common Zero, CC0 License"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -56.0
+offset_right = 24.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_t1g3p")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqxhy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_42fnt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6uy35")
+text = "CLOSE"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

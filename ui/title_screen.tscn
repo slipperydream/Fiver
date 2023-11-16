@@ -105,9 +105,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -55.5
-offset_top = -129.0
+offset_top = -140.0
 offset_right = 55.5
-offset_bottom = -107.0
+offset_bottom = -118.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_3l5do")
@@ -125,9 +125,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -55.5
-offset_top = -74.0
+offset_top = -58.0
 offset_right = 55.5
-offset_bottom = -52.0
+offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_3l5do")
@@ -137,5 +137,26 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_42fnt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_6uy35")
 text = "Exit Game"
 
+[node name="CreditsGameButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_top = -98.0
+offset_right = 55.5
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_3l5do")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqxhy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_42fnt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6uy35")
+text = "Credits"
+
 [connection signal="pressed" from="Panel/PlayGameButton" to="." method="_on_play_game_button_pressed"]
 [connection signal="pressed" from="Panel/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
+[connection signal="pressed" from="Panel/CreditsGameButton" to="." method="_on_credits_game_button_pressed"]
